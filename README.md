@@ -29,8 +29,15 @@ This is the file you **email to the team** or drop on a host.
 
 **B) Host it once + email the link (best for a shared board).** Drag this whole `ops-dashboard/` folder onto <https://app.netlify.com/drop> (free, no card), or push it to a private GitHub Pages repo under `github.com/quantumintelligenceworks`. Email everyone the **link**. Now it opens on any phone or laptop, no attachment hassle — and everyone hitting the same URL on the same device shares one board.
 
-### Keeping everyone's leads together
-Because each emailed copy is local to that person's browser, sync through the **team sheet**: **Sync / Export → Export for Google Sheet (CSV)**, paste the rows into your shared QIW tracker. **Import master CSV** pulls the combined sheet back in. (Backup JSON is there too.)
+### Keeping everyone on one board
+
+**Live team sync (recommended).** Connect every device to one shared backend so all three see the same leads, auto-refreshing every ~15 seconds:
+1. Deploy `cloud-sync.gs` once — a Google Apps Script that turns a Google Sheet into the sync server (3 clicks; steps are at the top of that file).
+2. In the dashboard: **Sync / Export → Connect team sync**, paste the Web App URL + token. Do it once per device. The chip in the pipeline header flips to **Team sync on**.
+
+It's token-protected, merges by lead so nobody clobbers anyone, and writes a readable **Leads** tab in your Sheet. If sync isn't connected the board just runs locally — nothing breaks.
+
+**CSV fallback.** **Sync / Export → Export for Google Sheet (CSV)** dumps the board; **Import master CSV** pulls it back. (Backup JSON is there too.)
 
 ---
 
@@ -39,9 +46,11 @@ Because each emailed copy is local to that person's browser, sync through the **
 | File | What it is |
 | --- | --- |
 | **`QIW-Dashboard.html`** | **The one to use/email.** Self-contained, blank-start, with the name picker. |
-| `index.html` | Hosted launcher (links to the per-person pages). |
-| `chase.html` · `aidan.html` · `hayden.html` | Hosted deep-links — open straight to that person's blank board. |
-| `qiw-ops.css` · `qiw-ops.js` | Source styling + engine (the per-person pages load these; the single file inlines them). |
+| `index.html` | Hosted landing — the name picker (remembers you). |
+| `chase.html` · `aidan.html` · `hayden.html` | Hosted deep-links — open straight to that person's board. |
+| `qiw-ops.css` · `qiw-ops.js` | Source styling + engine (the hosted pages load these; the single file inlines them). |
+| `cloud-sync.gs` | Google Apps Script for the live shared board — paste into Apps Script. |
+| `DEPLOY.md` | How to host it (GitHub Pages or Netlify). |
 
 To rebuild `QIW-Dashboard.html` after editing the source, re-inline `qiw-ops.css` + `qiw-ops.js` into the template (read both as UTF-8, e.g. `[System.IO.File]::ReadAllText(path,[Text.Encoding]::UTF8)` — PowerShell's `Get-Content` mangles the `·`/`—`/`Ψ` characters).
 
