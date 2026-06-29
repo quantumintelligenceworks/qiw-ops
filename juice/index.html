@@ -518,7 +518,7 @@ footer.foot{margin-top:var(--s16);padding-top:var(--s4);border-top:1px solid var
       '</svg><span class="lock"><span class="wm">QIW</span><span class="org">QUANTUM INTELLIGENCE WORKS</span></span></span>';
   }
   function nav() {
-    var pages = [["chase", "Chase"], ["aidan", "Aidan"], ["hayden", "Hayden"]];
+    var pages = [["juice", "Juice"]];
     var cls = ME.accent === "green" ? "g" : ME.accent === "steel" ? "s" : "";
     var inner = pages.map(function (p) {
       var here = p[0] === ME.key ? " here " + cls : "";
@@ -575,7 +575,7 @@ footer.foot{margin-top:var(--s16);padding-top:var(--s4);border-top:1px solid var
     else if (pct >= 30) st = "Steady grind. Keep pressing.";
     else if (c.w > 0) st = "Warming up — fill the board.";
     if (c.b > 0) st += "  ·  " + c.b + " call" + (c.b > 1 ? "s" : "") + " booked today.";
-    var reps = ["Chase", "Aidan", "Hayden"].map(function (o) { var r = repToday(o); return '<div class="repchip ' + ownClass(o) + '"><div class="n">' + o + (o === ME.name ? " • you" : "") + '</div><div class="s">' + r.w + " worked · " + r.b + " booked today</div></div>"; }).join("");
+    var reps = ["Juice"].map(function (o) { var r = repToday(o); return '<div class="repchip ' + ownClass(o) + '"><div class="n">' + o + (o === ME.name ? " • you" : "") + '</div><div class="s">' + r.w + " worked · " + r.b + " booked today</div></div>"; }).join("");
     var stats = statStrip();
     $("motorMod").innerHTML =
       '<div class="panel"><div class="motor">' +
@@ -712,7 +712,7 @@ footer.foot{margin-top:var(--s16);padding-top:var(--s4);border-top:1px solid var
         '<div class="cards2">' + body + "</div></section>";
     },
     field: function () {
-      return miniList(function (l) { return l.stage === "New"; }, "TODAY — KNOCK DOORS", "Field push — La Porte", "walk in, pitch the free preview, book the call");
+      return miniList(function (l) { return l.stage === "New"; }, "TODAY — KNOCK DOORS", "Field push — the Hamptons", "walk in, pitch the free preview, book the call");
     },
     coldcall: function () {
       var cc = SOPS.coldcall, me = ME.name;
@@ -818,7 +818,7 @@ footer.foot{margin-top:var(--s16);padding-top:var(--s4);border-top:1px solid var
     var opt = function (arr, v) { return arr.map(function (o) { return '<option' + (o === v ? " selected" : "") + ">" + o + "</option>"; }).join(""); };
     $("scrim").innerHTML = '<div class="modal"><h2>' + (id ? "Edit lead" : "Add lead") + '</h2><div class="fgrid">' +
       fld("business", "Business", l.business) + fldSel("owner", "Owner", OWNERS, l.owner || ME.name) +
-      fld("industry", "Industry", l.industry) + fld("city", "City / Region", l.city || "La Porte IN") +
+      fld("industry", "Industry", l.industry) + fld("city", "City / Region", l.city || "Southampton NY") +
       fld("contact", "Contact", l.contact) + fld("phone", "Phone", l.phone) +
       fld("email", "Email", l.email) + fldSel("presence", "Online presence", PRESENCE, l.presence || "Verify") +
       fldSel("source", "Channel", SOURCES, l.source || "Walk-in") + fldSel("model", "Model", MODELS, l.model || "Free to Monthly") +
